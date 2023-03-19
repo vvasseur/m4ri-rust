@@ -251,12 +251,21 @@ impl BinMatrix {
         self.clone().echelonize()
     }
 
-    /// Echelonize this matrix in-place
+    /// Echelonize (row echelon form) this matrix in-place
     ///
     /// Return: the rank of the matrix
     #[inline]
     pub fn echelonize(&mut self) -> usize {
         let rank = unsafe { mzd_echelonize(self.mzd.as_ptr(), false as c_int) };
+        rank as usize
+    }
+
+    /// Fully echelonize (reduced row echelon form) this matrix in-place
+    ///
+    /// Return: the rank of the matrix
+    #[inline]
+    pub fn echelonize_full(&mut self) -> usize {
+        let rank = unsafe { mzd_echelonize(self.mzd.as_ptr(), true as c_int) };
         rank as usize
     }
 
