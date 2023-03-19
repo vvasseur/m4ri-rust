@@ -681,7 +681,7 @@ mod test {
     #[test]
     fn vecmul() {
         let m1 = BinMatrix::identity(10);
-        let binvec = BinVector::from(Vob::from_elem(10, true));
+        let binvec = BinVector::from(Vob::from_elem(true, 10));
 
         let result: BinVector = &m1 * &binvec;
         assert_eq!(result, binvec);
